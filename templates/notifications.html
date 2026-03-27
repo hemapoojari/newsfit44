@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Notifications</h2>
+
+<div class="card news-card">
+  <h3>Recent Activity</h3>
+  <ul class="notification-list">
+    {% for item in activity %}
+    <li>
+      <p>{{ item.message }}</p>
+      <small>{{ item.time }}</small>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}

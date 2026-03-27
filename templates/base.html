@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="top-header">
+  <div class="header-content">
+    <div class="header-left">
+      <h1 class="logo">NewsFit</h1>
+    </div>
+
+    <div class="header-actions">
+      <a href="/notifications" class="notification" title="Notifications">
+        <span>🔔</span>
+        <div class="badge">3</div>
+      </a>
+      <a href="/profile" class="user-info" title="My profile">TU</a>
+      <a href="/logout" class="logout-link">Logout</a>
+    </div>
+  </div>
+</header>
+
+<div class="main">
+
+  <div class="sidebar">
+    <a href="/dashboard" class="active">📊 Dashboard</a>
+    <a href="/news">📰 Articles</a>
+    <a href="/profile">👤 Profile</a>
+    <a href="/settings">⚙️ Settings</a>
+  </div>
+
+  <div class="content">
+    {% block content %}{% endblock %}
+  </div>
+
+</div>
+
+</body>
+</html>

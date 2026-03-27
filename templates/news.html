@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>📰 News</h2>
+
+<!-- 🔍 Search Bar -->
+<div class="card search-card search-card-small">
+  <form method="GET" action="/news">
+    <input type="text" name="query" placeholder="Search news..." required>
+    <button type="submit">Search</button>
+  </form>
+</div>
+
+<!-- ⭐ Top Recommended -->
+<h3>⭐ Top Recommended</h3>
+<div class="grid">
+{% for article in news[:3] %}
+  <div class="card news-card">
+
+    {% if article.urlToImage %}
+    <img src="{{ article.urlToImage }}" class="news-img" alt="News Image">
+    {% endif %}
+
+    <h4>{{ article.title }}</h4>
+    <p class="news-description">{{ article.description[:100] + '...' if article.description and article.description|length > 100 else article.description or 'No description available.' }}</p>
+
+    <a href="{{ article.url }}" target="_blank" class="read-btn">Read Article</a>
+
+  </div>
+{% endfor %}
+</div>
+
+<hr>
+
+<!-- 🧱 All News -->
+<h3>All News</h3>
+
+<div class="grid">
+{% for article in news %}
+<div class="card news-card">
+
+  {% if article.urlToImage %}
+  <img src="{{ article.urlToImage }}" class="news-img" alt="News Image">
+  {% endif %}
+
+  <h4>{{ article.title }}</h4>
+  <p class="news-description">{{ article.description[:100] + '...' if article.description and article.description|length > 100 else article.description or 'No description available.' }}</p>
+
+  <div class="card-actions">
+    <a href="{{ article.url }}" target="_blank" class="read-btn">Read Article</a>
+    <form action="/update" method="POST" style="display: inline;">
+      <input type="hidden" name="category" value="{{ article.source.name }}">
+      <button class="like" name="action" value="like">👍 Like</button>
+      <button class="skip" name="action" value="skip">❌ Skip</button>
+    </form>
+  </div>
+
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}

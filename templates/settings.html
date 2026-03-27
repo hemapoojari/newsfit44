@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Settings</h2>
+
+<div class="grid">
+  <div class="card news-card">
+    <h3>Account Settings</h3>
+    <p>Update your configurables, toggle email notifications, and set your reading preferences.</p>
+    <ul>
+      <li>Username: {{ user[0] }}</li>
+      <li>Notification frequency: Daily summary</li>
+      <li>Theme: Glassmorphism dark</li>
+    </ul>
+  </div>
+
+  <div class="card news-card">
+    <h3>Preferences</h3>
+    <p>Set your news-related preferences for better personalization.</p>
+    <ul>
+      <li>Favorite categories: General, Business, Technology</li>
+      <li>Auto-refresh feed: Enabled</li>
+      <li>Article length preference: Short / Medium</li>
+    </ul>
+  </div>
+</div>
+
+{% endblock %}

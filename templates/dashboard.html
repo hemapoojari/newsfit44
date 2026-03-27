@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Dashboard</h2>
+
+<div class="stats-container">
+  <div class="card stat-card">
+    <div class="stat-icon">📖</div>
+    <h3>Total Read</h3>
+    <div class="stat-number">{{ read }}</div>
+  </div>
+  <div class="card stat-card">
+    <div class="stat-icon">⏭️</div>
+    <h3>Total Skip</h3>
+    <div class="stat-number">{{ skip }}</div>
+  </div>
+  <div class="card stat-card">
+    <div class="stat-icon">🎯</div>
+    <h3>Interest Score</h3>
+    <div class="stat-number">{{ total }}</div>
+  </div>
+</div>
+
+<div class="welcome-section">
+  <div class="card welcome-card">
+    <h3>Welcome back! 👋</h3>
+    <p>Discover personalized news tailored to your interests. Your reading preferences help us recommend the best articles for you.</p>
+  </div>
+</div>
+
+<div class="card recommended-section">
+  <h3>⭐ Recommended News</h3>
+  <div class="grid">
+    {% for article in recommended_news %}
+      <div class="card news-card">
+        {% if article.urlToImage %}
+        <img src="{{ article.urlToImage }}" class="news-img" alt="News Image">
+        {% endif %}
+        <h4>{{ article.title }}</h4>
+        <p class="news-description">{{ article.description[:100] + '...' if article.description and article.description|length > 100 else article.description or 'No description available.' }}</p>
+        <a href="{{ article.url }}" target="_blank" class="read-btn">Read Article</a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
